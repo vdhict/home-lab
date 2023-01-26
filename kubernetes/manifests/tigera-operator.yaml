@@ -18169,7 +18169,7 @@ spec:
             - name: OPERATOR_NAME
               value: "tigera-operator"
             - name: TIGERA_OPERATOR_INIT_IMAGE_VERSION
-              value: v1.29.0-arm64
+              value: v1.29.0
           envFrom:
             - configMapRef:
                 name: kubernetes-services-endpoint
