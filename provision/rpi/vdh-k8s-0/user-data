@@ -51,5 +51,5 @@ runcmd:
 - sync
 
 power_state:
-    delay: 10
+    delay: 3
     mode: reboot

@@ -1,6 +1,7 @@
 ---
 ignore: |
   *.sops.*
+  *manifests*
 extends: default
 rules:
   truthy:
