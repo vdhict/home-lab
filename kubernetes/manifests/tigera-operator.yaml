@@ -781,13 +781,6 @@ spec:
                   connections.  The only reason to disable it is for debugging purposes.  [Default:
                   true]'
                 type: boolean
-              bpfDSROptoutCIDRs:
-                description: BPFDSROptoutCIDRs is a list of CIDRs which are excluded
-                  from DSR. That is, clients in those CIDRs will accesses nodeports
-                  as if BPFExternalServiceMode was set to Tunnel.
-                items:
-                  type: string
-                type: array
               bpfDataIfacePattern:
                 description: BPFDataIfacePattern is a regular expression that controls
                   which interfaces Felix should attach BPF programs to in order to
@@ -4063,6 +4056,8 @@ status:
 
 ---
 # Source: crds/operator.tigera.io_apiservers_crd.yaml
+
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -5422,6 +5417,8 @@ status:
 
 ---
 # Source: crds/operator.tigera.io_imagesets_crd.yaml
+
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -5500,6 +5497,8 @@ status:
 
 ---
 # Source: crds/operator.tigera.io_installations_crd.yaml
+
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -17758,6 +17757,8 @@ status:
 
 ---
 # Source: crds/operator.tigera.io_tigerastatuses_crd.yaml
+
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -18150,7 +18151,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: tigera-operator
-          image: quay.io/tigera/operator:master-arm64
+          image: quay.io/tigera/operator:v1.29.0-arm64
           imagePullPolicy: IfNotPresent
           command:
             - operator
@@ -18168,7 +18169,7 @@ spec:
             - name: OPERATOR_NAME
               value: "tigera-operator"
             - name: TIGERA_OPERATOR_INIT_IMAGE_VERSION
-              value: master
+              value: v1.29.0
           envFrom:
             - configMapRef:
                 name: kubernetes-services-endpoint
