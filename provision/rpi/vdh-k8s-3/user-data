@@ -9,8 +9,7 @@
 #
 
 # Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: ubuntu-server
-manage_etc_hosts: true
+hostname: vdh-k8s-3
 locale: en_US.UTF-8
 timezone: Europe/Amsterdam
 
@@ -36,7 +35,8 @@ users:
     ssh-authorized-keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkElZQKceoslqvyMZHY60Ufg8ttc61hZUNhaHm2TyZe sheijden@vdhlocal
 
-# Enable password authentication with the SSH daemon
+mounts:
+ - [ LABEL=USBStorage,/media/storage,ext4,"defaults,noatime,nodiratime","0","2"]
 
 ntp:
   enabled: true
@@ -45,7 +45,7 @@ ntp:
     - ntp1.nl.net
 
 runcmd:
-#- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
+- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
 - sleep 180
 - apt -yq update
 - apt -yq upgrade

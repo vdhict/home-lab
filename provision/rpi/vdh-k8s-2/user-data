@@ -9,8 +9,7 @@
 #
 
 # Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: ubuntu-server
-manage_etc_hosts: true
+hostname: vdh-k8s-2
 locale: en_US.UTF-8
 timezone: Europe/Amsterdam
 
@@ -46,6 +45,7 @@ ntp:
     - ntp1.nl.net
 
 runcmd:
+- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
 - sleep 180
 - apt -yq update
 - apt -yq upgrade

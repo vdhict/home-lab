@@ -1,0 +1,55 @@
+#cloud-config
+
+# This is the user-data configuration file for cloud-init. By default this sets
+# up an initial user called "ubuntu" with password "ubuntu", which must be
+# changed at first login. However, many additional actions can be initiated on
+# first boot from this file. The cloud-init documentation has more details:
+#
+# https://cloudinit.readthedocs.io/
+#
+
+# Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
+hostname: vdh-k8s-0
+locale: en_US.UTF-8
+timezone: Europe/Amsterdam
+
+chpasswd:
+  expire: false
+  list:
+  - ubuntu:ubuntu
+
+ssh_pwauth: true
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkElZQKceoslqvyMZHY60Ufg8ttc61hZUNhaHm2TyZe sheijden@vdhlocal
+
+users:
+  - default
+  - name: ansible
+    gecos: Ansible User
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    passwd: $6$uZW4emuyGTBr2usA$Lwpzvt9uW5ughSrlKPqjCXc73L8QHJJUu1rRdG1FmpJ4WZ9182y8Al3HiVMK8dZZq8Sx/2zvkrvMXWsxOn41j/
+    groups: [adm, audio, cdrom, dialout, floppy, video, plugdev, dip, netdev]
+    lock_passwd: false
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkElZQKceoslqvyMZHY60Ufg8ttc61hZUNhaHm2TyZe sheijden@vdhlocal
+
+# Enable password authentication with the SSH daemon
+
+ntp:
+  enabled: true
+  servers:
+    - 172.16.2.246
+    - ntp1.nl.net
+
+runcmd:
+- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
+- sleep 180
+- apt -yq update
+- apt -yq upgrade
+- sync
+
+power_state:
+    delay: 10
+    mode: reboot
