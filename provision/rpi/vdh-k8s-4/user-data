@@ -12,6 +12,8 @@
 hostname: vdh-k8s-4
 locale: en_US.UTF-8
 timezone: Europe/Amsterdam
+# cloud-init not managing hosts file. only hostname is added
+manage_etc_hosts: localhost
 
 chpasswd:
   expire: false
@@ -45,7 +47,6 @@ ntp:
     - ntp1.nl.net
 
 runcmd:
-- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
 - sleep 180
 - apt -yq update
 - apt -yq upgrade
