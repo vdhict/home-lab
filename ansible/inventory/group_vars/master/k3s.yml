@@ -12,10 +12,10 @@ k3s_server:
     - "{{ kubevip_address }}"
   # Disable Docker - this will use the default containerd CRI
   docker: false
-  flannel-backend: "none" # This needs to be in quotes
+  flannel-backend: "vxlan" # This needs to be in quotes
   disable:
     # Disable flannel - replaced with Calico
-    - flannel
+    # - flannel
     # Disable local-path-provisioner - installed with Flux
     - local-storage
     # Disable metrics-server - installed with Flux
@@ -24,7 +24,7 @@ k3s_server:
     - servicelb
     # Disable traefik - replaced with ingress-nginx and installed with Flux
     - traefik
-  disable-network-policy: true
+  # disable-network-policy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
   # Network CIDR to use for pod IPs
