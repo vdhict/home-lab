@@ -1,0 +1,9 @@
+postgresql:
+    auth:
+        postgresqlPassword: rDML8XJNVwCp
+        password: uhvhvB3PLmG8
+addons:
+    codeserver:
+        env:
+            HASS_SERVER: http://localhost:8123
+            HASS_TOKEN: 287k8UDXGuBj
