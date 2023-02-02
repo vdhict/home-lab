@@ -95,9 +95,8 @@ spec:
           - name: config
             mountPath: /config
         env:
-          - name: HASS_SERVER
-            value: "http://localhost:8123"
-          - name: HASS_TOKEN
+          HASS_SERVER: "http://localhost:8123"
+          HASS_TOKEN:
             valueFrom:
               secretKeyRef:
                 name: home-assistant-secret
