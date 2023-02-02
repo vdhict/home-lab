@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: 2023.1.7
+      tag: 2023.2.0
     env:
       TZ: 'Europe/Amsterdam'
     hostNetwork: true
@@ -94,13 +94,25 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+        env:
+          - name: HASS_SERVER
+            valueFrom:
+              secretKeyRef:
+                name: home-assistant-secret
+                key: hass_server
+          - name: HASS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: home-assistant-secret
+                key: hass_token
     postgresql:
       enabled: true
       image:
         repository: postgres
         tag: '14.1'
       auth:
-        enablePostgresUser: false
+        enablePostgresUser: true
+        existingSecret: home-assistant-secret
         username: home-assistant
         database: home-assistant
       postgresqlDataDir: "/data/pgdata"
@@ -116,10 +128,6 @@ spec:
           mountPath: "/data/"
       resources:
         limits:
-          memory: 4000Mi
-        requests:
           memory: 2000Mi
-  valuesFrom:
-    - kind: Secret
-      name: home-assistant-secret
-      optional: false
+        requests:
+          memory: 1000Mi
