@@ -32,10 +32,10 @@ spec:
         memory: 500Mi
     service:
       main:
-        type: LoadBalancer
-        loadBalancerIP: 172.16.2.122
         annotations:
           metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+        type: LoadBalancer
+        loadBalancerIP: 172.16.2.122
         ports:
           http:
             port: 8091
@@ -44,6 +44,7 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
+          metallb.universe.tf/loadBalancerIPs: "172.16.2.122"
           metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
         ports:
           websocket:
@@ -57,13 +58,13 @@ spec:
         annotations:
           kubernetes.io/ingress.class: "nginx"
         hosts:
-          - host: "z.${SECRET_DOMAIN}"
+          - host: "z.climatejungle.com"
             paths:
-              path: /
-              pathType: Prefix
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
-              - "z.${SECRET_DOMAIN}"
+              - "z.climatejungle.com"
     persistence:
       config:
         enabled: true
