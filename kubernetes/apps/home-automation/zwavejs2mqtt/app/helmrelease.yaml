@@ -32,10 +32,25 @@ spec:
         memory: 500Mi
     service:
       main:
+        type: LoadBalancer
+        loadBalancerIP: 172.16.2.122
+        annotations:
+          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
         ports:
-          websockets:
+          http:
+            port: 8091
+      websock:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+        ports:
+          websocket:
             enabled: true
             port: 3000
+            protocol: TCP
+            targetPort: 3000
     ingress:
       main:
         enabled: true
