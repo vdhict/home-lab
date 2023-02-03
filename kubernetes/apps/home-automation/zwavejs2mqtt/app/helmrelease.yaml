@@ -16,6 +16,20 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 15m
+    test:
+      enable: false # Enable helm test
+    install:
+      remediation: # perform remediation when helm install fails
+        retries: 3
+    upgrade:
+      remediation: # perform remediation when helm upgrade fails
+        retries: 3
+        remediateLastFailure: true # remediate the last failure, when no retries remain
+      cleanupOnFail: true
+    rollback:
+      timeout: 10m
+      recreate: true
+      cleanupOnFail: true
   values:
     image:
       repository: ghcr.io/zwave-js/zwave-js-ui
@@ -42,13 +56,13 @@ spec:
         annotations:
           kubernetes.io/ingress.class: "nginx"
         hosts:
-        - host: "z.${SECRET_DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "z.${SECRET_DOMAIN}"
+            paths:
+              path: /
+              pathType: Prefix
         tls:
-        - hosts:
-          - "z.${SECRET_DOMAIN}"
+          - hosts:
+              - "z.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
@@ -68,5 +82,5 @@ spec:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
-          - matchExpressions:
-            - {key: "feature.node.kubernetes.io/custom-zwave", operator: In, values: ["true"]}
+            - matchExpressions:
+                - {key: "feature.node.kubernetes.io/custom-zwave", operator: In, values: ["true"]}
