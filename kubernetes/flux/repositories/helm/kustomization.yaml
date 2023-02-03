@@ -16,3 +16,5 @@ resources:
   - ./weave-gitops.yaml
   - ./longhorn.yaml
   - ./k8s-at-home.yaml
+  - ./t3n.yaml
+  - ./kubernetes-sigs-nfd.yaml
