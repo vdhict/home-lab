@@ -5,7 +5,7 @@ metadata:
   name: zwavejs2mqtt
   namespace: home-automation
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
-      interval: 15m
+      interval: 5m
   values:
     image:
       repository: ghcr.io/zwave-js/zwave-js-ui
@@ -26,10 +26,10 @@ spec:
       privileged: true
     resources:
       requests:
-        memory: 100Mi
+        memory: 200Mi
         cpu: 50m
       limits:
-        memory: 150Mi
+        memory: 500Mi
     service:
       main:
         ports:
