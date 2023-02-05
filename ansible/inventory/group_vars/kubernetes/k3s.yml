@@ -18,7 +18,7 @@ k3s_become: true
 k3s_debug: false
 
 # (bool) Enable etcd embedded datastore
-k3s_etcd_datastore: true
+k3s_etcd_datastore: false
 
 # (bool) Allow the use of unsupported configurations in k3s
 k3s_use_unsupported_config: true
@@ -32,9 +32,9 @@ k3s_server_manifests_urls:
   - url: https://kube-vip.io/manifests/rbac.yaml
     filename: kube-vip-rbac.yaml
   # Tigera Operator
-  - url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
-    filename: calico-tigera-operator.yaml
-  # Prometheus Operator
+  # - url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+  #   filename: calico-tigera-operator.yaml
+  # # Prometheus Operator
   - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
     filename: prometheus-alertmanagerconfigs.yaml
   - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.61.1/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml
@@ -55,5 +55,5 @@ k3s_server_manifests_urls:
 # (list) A flat list of templates to deploy on the primary control plane
 # /var/lib/rancher/k3s/server/manifests
 k3s_server_manifests_templates:
-  - calico-installation.yaml.j2
+  # - calico-installation.yaml.j2
   - kube-vip-daemonset.yaml.j2
