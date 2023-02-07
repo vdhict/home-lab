@@ -22,6 +22,11 @@ spec:
     remediation:
       retries: 3
   values:
+    persistence:
+      defaultClass: true
+      defaultClassReplicaCount: 3
+      defaultFsType: ext4
+      reclaimPolicy: Delete
     replicaCount: 2
     ingress:
       enabled: true
@@ -34,7 +39,13 @@ spec:
           hosts:
             - "longhorn.${SECRET_DOMAIN}"
     defaultSettings:
+      defaultDataLocality: best-effort
+      defaultReplicaCount: 3
       createDefaultDiskLabeledNodes: true
+      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      storageMinimalAvailablePercentage: 10
+      StorageOverProvisioningPercentage: 110
       defaultDataPath: /media/storage
     resources:
       requests:
