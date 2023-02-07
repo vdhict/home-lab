@@ -31,8 +31,8 @@ spec:
     cleanupOnFail: true
   values:
     image:
-      repository: homeassistant/home-assistant
-      tag: 2023.2.0
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2023.2.2
     env:
       TZ: 'Europe/Amsterdam'
     hostNetwork: true
@@ -40,9 +40,9 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: 172.16.2.122
+        loadBalancerIP: 172.16.2.121
         annotations:
-          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.121"
     ingress:
       main:
         enabled: true
