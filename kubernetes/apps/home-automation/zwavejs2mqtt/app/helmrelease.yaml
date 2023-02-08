@@ -42,6 +42,7 @@ spec:
       websock:
         enabled: true
         type: LoadBalancer
+        loadBalancerIP: 172.16.2.122
         externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: "172.16.2.122"
@@ -71,7 +72,7 @@ spec:
         emptyDir:
           enabled: false
         mountPath: /usr/src/app/store
-        storageClass: "longhorn"
+        storageClass: longhorn
         accessMode: ReadWriteOnce
         size: "1Gi"
         skipuninstall: true
