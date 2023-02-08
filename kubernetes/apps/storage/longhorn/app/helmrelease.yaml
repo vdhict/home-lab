@@ -39,6 +39,8 @@ spec:
           hosts:
             - "longhorn.${SECRET_DOMAIN}"
     defaultSettings:
+      backupstorePollInterval: 300
+      backupTarget: nfs://${NAS_ADDR}:/volume1/clusterbackup
       defaultDataLocality: best-effort
       defaultReplicaCount: 3
       createDefaultDiskLabeledNodes: true

@@ -19,12 +19,15 @@ spec:
     createNamespace: true
     remediation:
       retries: 3
+    timeout: 30m
   upgrade:
     cleanupOnFail: true
     remediation:
       retries: 3
+    timeout: 30m
   uninstall:
     keepHistory: false
+    timeout: 30m
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
