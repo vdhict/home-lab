@@ -22,3 +22,4 @@ spec:
   timeout: 15m
   dependsOn:
     - name: cluster-apps-longhorn
+    - name: cluster-apps-ingress-nginx
