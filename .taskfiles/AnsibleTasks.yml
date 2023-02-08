@@ -43,6 +43,7 @@ tasks:
     interactive: true
     cmds:
       - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-nuke.yml
+      - task: nukestorage
       - task: force-reboot
 
   nukestorage:
@@ -51,7 +52,6 @@ tasks:
     interactive: true
     cmds:
       - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-nukestorage.yml
-      - task: nukestorage
 
   ping:
     desc: Ping all the hosts
