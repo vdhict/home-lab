@@ -1,0 +1,32 @@
+---
+- hosts:
+    - worker
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tasks:
+    - name: Gather list of Longhorn files
+      ansible.builtin.find:
+        paths: /media/storage
+        patterns: "*"
+        hidden: true
+        recurse: yes
+      register: directory_contents_longhorn
+    - name: Delete Longhorn files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ directory_contents_longhorn.files }}"
+    - name: Gather list of Longhorn directories
+      ansible.builtin.find:
+        paths: /media/storage
+        patterns: "*"
+        file_type: directory
+        hidden: true
+        recurse: yes
+      register: directory_contents_longhorn_directory
+    - name: Delete Longhorn files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ directory_contents_longhorn_directory.files }}"
