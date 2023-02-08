@@ -17,8 +17,8 @@ spec:
       kind: HelmRelease
       name: mosquitto
       namespace: home-automation
-  interval: 30m
+  interval: 60m
   retryInterval: 1m
-  timeout: 3m
+  timeout: 15m
   dependsOn:
     - name: cluster-apps-longhorn
