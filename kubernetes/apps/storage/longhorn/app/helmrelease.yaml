@@ -46,7 +46,7 @@ spec:
       createDefaultDiskLabeledNodes: true
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      storageMinimalAvailablePercentage: 10
+      storageMinimalAvailablePercentage: 5
       StorageOverProvisioningPercentage: 110
       defaultDataPath: /media/storage
     resources:
