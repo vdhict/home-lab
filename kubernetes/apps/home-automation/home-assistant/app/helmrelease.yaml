@@ -40,9 +40,9 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: 172.16.2.121
+        loadBalancerIP: 172.16.2.122
         annotations:
-          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.121"
+          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
     ingress:
       main:
         enabled: true
