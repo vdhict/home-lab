@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/zwave-js/zwave-js-ui
-      tag: 8.8.3
+      tag: 8.8.4
     env:
       TZ: "Europe/Amsterdam"
     securityContext:
@@ -32,22 +32,9 @@ spec:
         memory: 500Mi
     service:
       main:
-        annotations:
-          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
-        type: LoadBalancer
-        loadBalancerIP: 172.16.2.122
         ports:
           http:
             port: 8091
-      websock:
-        enabled: true
-        type: LoadBalancer
-        loadBalancerIP: 172.16.2.122
-        externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: "172.16.2.122"
-          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
-        ports:
           websocket:
             enabled: true
             port: 3000
