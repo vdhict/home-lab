@@ -74,6 +74,8 @@ spec:
           tag: 4.7.1
         workingDir: '/config'
         args:
+          - --auth
+          - "none"
           - --user-data-dir
           - '/config/.vscode'
           - --extensions-dir
