@@ -18,3 +18,4 @@ resources:
   - ./k8s-at-home.yaml
   - ./t3n.yaml
   - ./kubernetes-sigs-nfd.yaml
+  - ./kubereboot.yaml
