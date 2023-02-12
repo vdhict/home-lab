@@ -17,6 +17,10 @@ spec:
   values:
     persistentVolumeClaim:
       enabled: true
+      accessModes:
+        - ReadWriteOnce
+      size: "500Mi"
+      storageClass: "longhorn"
 
     admin:
       existingSecret: "pihole-secret"
@@ -36,14 +40,15 @@ spec:
 
     ingress:
       enabled: true
+      ingressClassName: nginx
       annotations:
         kubernetes.io/ingress.class: "nginx"
+      path: /
       hosts:
-        - host: pihole.${SECRET_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
+        - pihole.${SECRET_DOMAIN}
+
       tls:
+        - secretName: pihole-tls
         - hosts:
             - pihole.${SECRET_DOMAIN}
 
