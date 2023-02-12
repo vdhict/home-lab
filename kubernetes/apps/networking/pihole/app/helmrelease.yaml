@@ -14,43 +14,43 @@ spec:
         name: mojo2600
         namespace: flux-system
       interval: 30m
-values:
-  persistentVolumeClaim:
-    enabled: true
+  values:
+    persistentVolumeClaim:
+      enabled: true
 
-  admin:
-    existingSecret: "pihole-secret"
-    passwordKey: "password"
+    admin:
+      existingSecret: "pihole-secret"
+      passwordKey: "password"
 
-  serviceWeb:
-    loadBalancerIP: 172.16.2.122
-    annotations:
-      metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
-    type: LoadBalancer
+    serviceWeb:
+      loadBalancerIP: 172.16.2.122
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+      type: LoadBalancer
 
-  serviceDns:
-    loadBalancerIP: 172.16.2.122
-    annotations:
-      metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
-    type: LoadBalancer
+    serviceDns:
+      loadBalancerIP: 172.16.2.122
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+      type: LoadBalancer
 
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: "nginx"
-    hosts:
-      - host: "pihole.${SECRET_DOMAIN}"
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - "pihole.${SECRET_DOMAIN}"
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      hosts:
+        - host: "pihole.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "pihole.${SECRET_DOMAIN}"
 
-  podDnsConfig:
-    enabled: true
-    policy: "None"
-    nameservers:
-      - 1.1.1.1
-      - 8.8.4.4
-      - 8.8.8.8
+    podDnsConfig:
+      enabled: true
+      policy: "None"
+      nameservers:
+        - 1.1.1.1
+        - 8.8.4.4
+        - 8.8.8.8
