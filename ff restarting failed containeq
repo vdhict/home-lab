@@ -1,0 +1,92 @@
+Name:             home-assistant-postgresql-0
+Namespace:        home-automation
+Priority:         0
+Service Account:  default
+Node:             vdh-k8s-3/172.16.2.93
+Start Time:       Sun, 12 Feb 2023 09:44:50 +0100
+Labels:           app.kubernetes.io/component=primary
+                  app.kubernetes.io/instance=home-assistant
+                  app.kubernetes.io/managed-by=Helm
+                  app.kubernetes.io/name=postgresql
+                  controller-revision-hash=home-assistant-postgresql-68869dd584
+                  helm.sh/chart=postgresql-11.6.12
+                  statefulset.kubernetes.io/pod-name=home-assistant-postgresql-0
+Annotations:      <none>
+Status:           Running
+IP:               10.42.3.27
+IPs:
+  IP:           10.42.3.27
+Controlled By:  StatefulSet/home-assistant-postgresql
+Containers:
+  postgresql:
+    Container ID:   containerd://fcd7ea410815e6a932a7e0050781461fe73dcadd5fa96aebbcde22a8e789b713
+    Image:          docker.io/postgres:15.2
+    Image ID:       docker.io/library/postgres@sha256:901df890146ec46a5cab7a33f4ac84e81bac2fe92b2c9a14fd649502c4adf954
+    Port:           5432/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Sun, 12 Feb 2023 10:21:43 +0100
+      Finished:     Sun, 12 Feb 2023 10:21:44 +0100
+    Ready:          False
+    Restart Count:  12
+    Requests:
+      cpu:      250m
+      memory:   256Mi
+    Liveness:   exec [/bin/sh -c exec pg_isready -U "home-assistant" -d "dbname=home-assistant" -h 127.0.0.1 -p 5432] delay=30s timeout=5s period=10s #success=1 #failure=6
+    Readiness:  exec [/bin/sh -c -e exec pg_isready -U "home-assistant" -d "dbname=home-assistant" -h 127.0.0.1 -p 5432
+] delay=5s timeout=5s period=10s #success=1 #failure=6
+    Environment:
+      BITNAMI_DEBUG:                        false
+      POSTGRESQL_PORT_NUMBER:               5432
+      POSTGRESQL_VOLUME_DIR:                /data/
+      PGDATA:                               /data/pgdata
+      POSTGRES_USER:                        home-assistant
+      POSTGRES_POSTGRES_PASSWORD:           <set to the key 'postgres-password' in secret 'home-assistant-secret'>  Optional: false
+      POSTGRES_PASSWORD:                    <set to the key 'password' in secret 'home-assistant-secret'>           Optional: false
+      POSTGRES_DB:                          home-assistant
+      POSTGRESQL_ENABLE_LDAP:               no
+      POSTGRESQL_ENABLE_TLS:                no
+      POSTGRESQL_LOG_HOSTNAME:              false
+      POSTGRESQL_LOG_CONNECTIONS:           false
+      POSTGRESQL_LOG_DISCONNECTIONS:        false
+      POSTGRESQL_PGAUDIT_LOG_CATALOG:       off
+      POSTGRESQL_CLIENT_MIN_MESSAGES:       error
+      POSTGRESQL_SHARED_PRELOAD_LIBRARIES:  pgaudit
+    Mounts:
+      /data/ from data (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-rtqmr (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  data:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  data-home-assistant-postgresql-0
+    ReadOnly:   false
+  kube-api-access-rtqmr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                        From                     Message
+  ----     ------                  ----                       ----                     -------
+  Normal   Scheduled               10m                        default-scheduler        Successfully assigned home-automation/home-assistant-postgresql-0 to vdh-k8s-3
+  Warning  FailedAttachVolume      10m                        attachdetach-controller  Multi-Attach error for volume "pvc-a1c7a0d0-a8ec-482a-b8d9-c44415ac2b02" Volume is already exclusively attached to one node and can't be attached to another
+  Normal   SuccessfulAttachVolume  10m                        attachdetach-controller  AttachVolume.Attach succeeded for volume "pvc-a1c7a0d0-a8ec-482a-b8d9-c44415ac2b02"
+  Normal   Created                 9m41s (x4 over 10m)        kubelet                  Created container postgresql
+  Normal   Started                 9m41s (x4 over 10m)        kubelet                  Started container postgresql
+  Normal   Pulled                  8m56s (x5 over 10m)        kubelet                  Container image "docker.io/postgres:15.2" already present on machine
+  Warning  BackOff                 <invalid> (x181 over 10m)  kubelet                  Back-off restarting failed container postgresql in pod home-assistant-postgresql-0_home-automation(283c7931-7172-4112-b6c4-685ffe4a2e25)
