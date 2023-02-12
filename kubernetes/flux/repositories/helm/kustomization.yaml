@@ -19,3 +19,4 @@ resources:
   - ./t3n.yaml
   - ./kubernetes-sigs-nfd.yaml
   - ./kubereboot.yaml
+  - ./mojo2600.yaml

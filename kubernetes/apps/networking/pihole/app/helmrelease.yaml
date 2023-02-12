@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: home-automation
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: pihole
+      sourceRef:
+        kind: HelmRepository
+        name: mojo2600
+        namespace: flux-system
+      interval: 30m
+values:
+  persistentVolumeClaim:
+    enabled: true
+
+  admin:
+    existingSecret: "pihole-secret"
+    passwordKey: "password"
+
+  serviceWeb:
+    loadBalancerIP: 172.16.2.122
+    annotations:
+      metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+    type: LoadBalancer
+
+  serviceDns:
+    loadBalancerIP: 172.16.2.122
+    annotations:
+      metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
+    type: LoadBalancer
+
+  podDnsConfig:
+    enabled: true
+    policy: "None"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.4.4
+      - 8.8.8.8
