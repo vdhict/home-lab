@@ -45,3 +45,7 @@ spec:
         - 1.1.1.1
         - 8.8.4.4
         - 8.8.8.8
+
+    dnsmasq:
+      customDnsEntries:
+        - address=/pihole.bluejungle.net/172.16.2.123
