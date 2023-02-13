@@ -15,6 +15,11 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
+    image:
+      repository: "pihole/pihole"
+      tag: ""
+      pullPolicy: IfNotPresent
+
     persistentVolumeClaim:
       enabled: true
       accessModes:
@@ -49,3 +54,4 @@ spec:
     dnsmasq:
       customDnsEntries:
         - address=/pihole.bluejungle.net/172.16.2.123
+        - address=/longhorn.bluejungle.net/172.16.2.122
