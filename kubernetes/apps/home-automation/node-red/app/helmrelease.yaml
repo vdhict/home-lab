@@ -52,7 +52,6 @@ spec:
         enabled: true
         mountPath: /data
         storageClass: "longhorn"
-        accessMode: ReadWriteOnce
         size: "5Gi"
     resources:
       requests:
