@@ -10,16 +10,16 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: node-red
-      version: 10.3.2
+      version: 0.22.6
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: node-red
         namespace: flux-system
       interval: 5m
   values:
     image:
       repository: nodered/node-red
-      tag: 3.0.2-18-minimal
+      tag: 3.0.2
     env:
       TZ: "Europe/Amsterdam"
       FLOWS: "flows.json"
