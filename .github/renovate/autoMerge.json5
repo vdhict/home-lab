@@ -1,6 +1,24 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
+      // auto-updates - daily
+      {
+        "datasources": ["docker"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "schedule": "after 1am and before 5am",
+        "updateTypes": ["minor", "patch"],
+        "packageNames": [
+          "homeassistant/home-assistant",
+          "ghcr.io/onedr0p/radarr",
+          "ghcr.io/onedr0p/sonarr",
+          "ghcr.io/onedr0p/nzbget",
+          "plexinc/pms-docker",
+          "nodered/node-red",
+          "zwavejs/zwavejs2mqtt"
+        ]
+      },
     {
       "description": "Auto merge GitHub Actions",
       "matchManagers": ["github-actions"],
