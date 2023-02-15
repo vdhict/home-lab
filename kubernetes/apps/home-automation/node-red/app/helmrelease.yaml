@@ -44,6 +44,13 @@ spec:
       tls:
         - hosts:
             - "nodered.${SECRET_DOMAIN}"
+          certificate:
+            enabled: true
+            name: "node-red-cert"
+            issuerRef:
+              kind: ClusterIssuer
+              name: "letsencrypt-production"
+
     persistence:
       data:
         enabled: true
