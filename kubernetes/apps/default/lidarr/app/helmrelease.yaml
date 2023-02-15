@@ -31,42 +31,13 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: randomninjaatk/lidarr-extended
-      tag: arm64v8@sha256:d87d83ef7acb7a6721f79633e3a110c6755f5295c79434b7a8e6b94d87743b18
+      repository: ghcr.io/onedr0p/lidarr-develop
+      tag: 1.1.3.2982@sha256:7d6b298eeda0ef3248583b988406687b9c129d4ace20d38483358089d3797705
     env:
       TZ: Europe/Amsterdam
       LIDARR__INSTANCE_NAME: Lidarr
-      LIDARR__PORT: &port 80
+      LIDARR__PORT: 8686
       LIDARR__LOG_LEVEL: info
-      PUID: 1000
-      PGID: 1000
-      enableAudioScript: true
-      enableVideoScript: true
-      scriptInterval: 15m
-      configureLidarrWithOptimalSettings: true
-      searchSort: date
-      audioFormat: native
-      audioBitrate: lossless
-      requireQuality: true
-      enableReplaygainTags: true
-      audioLyricType: both
-      dlClientSource: both
-      tidalCountryCode: NL
-      addDeezerTopArtists: true
-      addDeezerTopAlbumArtists: true
-      addDeezerTopTrackArtists: true
-      topLimit: 10
-      addRelatedArtists: false
-      numberOfRelatedArtistsToAddPerArtist: 5
-      lidarrSearchForMissing: true
-      addFeaturedVideoArtists: false
-      plexUrl: http://172.16.2.252:32400
-      youtubeSubtitleLanguage: en
-      enableQueueCleaner: true
-      matchDistance: 5
-      enableBeetsTagging: true
-      beetsMatchPercentage: 90
-      retryNotFound: 90
     envFrom:
       - secretRef:
           name: lidarr-secret
@@ -88,7 +59,7 @@ spec:
             10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
           hajimari.io/icon: mdi:headphones
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "lidarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -96,9 +67,9 @@ spec:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups: [10000]
     volumeClaimTemplates:
@@ -113,22 +84,10 @@ spec:
         type: nfs
         server: 172.16.2.246
         path: /volume1/MULTIMEDIA/MUSIC
-        mountPath: /music
-      media-musicvideos:
-        enabled: true
-        type: nfs
-        server: 172.16.2.246
-        path: /volume1/MULTIMEDIA/MUSIC-VIDEOS
-        mountPath: /music-videos
-      downloads-lidarr-extended:
-        enabled: true
-        type: nfs
-        server: 172.16.2.246
-        path: /volume1/MULTIMEDIA/LIDARR
-        mountPath: /downloads-lidarr-extended
+        mountPath: /media
     resources:
       requests:
         cpu: 10m
         memory: 250Mi
       limits:
-        memory: 1000Mi
+        memory: 2000Mi
