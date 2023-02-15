@@ -45,7 +45,6 @@ spec:
         - hosts:
             - "nodered.${SECRET_DOMAIN}"
           certificate:
-            enabled: true
             name: "node-red-cert"
             issuerRef:
               kind: ClusterIssuer
