@@ -38,6 +38,8 @@ spec:
       LIDARR__INSTANCE_NAME: Lidarr
       LIDARR__PORT: &port 80
       LIDARR__LOG_LEVEL: info
+      PUID: 1000
+      PGID: 1000
       enableAudioScript: true
       enableVideoScript: true
       scriptInterval: 15m
@@ -94,9 +96,9 @@ spec:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups: [10000]
     volumeClaimTemplates:
