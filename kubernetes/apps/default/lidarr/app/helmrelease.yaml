@@ -45,7 +45,7 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8686
     ingress:
       main:
         enabled: true
