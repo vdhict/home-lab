@@ -49,6 +49,7 @@ spec:
             issuerRef:
               kind: ClusterIssuer
               name: "letsencrypt-production"
+              secretName: node-red-tls
 
     persistence:
       data:
