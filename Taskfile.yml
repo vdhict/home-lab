@@ -50,6 +50,7 @@ tasks:
         weaveworks/tap/gitops
         yamllint
         yq
+        derailed/k9s/k9s
 
   verify:
     desc: Verify env settings
