@@ -52,11 +52,9 @@ spec:
               secretName: node-red-tls
 
     persistence:
-      data:
-        enabled: true
-        mountPath: /data
-        storageClass: "longhorn"
-        size: "5Gi"
+      enabled: true
+      storageClass: "longhorn"
+      size: "5Gi"
     resources:
       requests:
         memory: 350Mi
