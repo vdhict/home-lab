@@ -26,8 +26,7 @@
     },
     "yaml.schemaStore.enable": true,
     "yaml.schemas": {
-      "ansible": "ansible/**/*.yml",
-      "kubernetes": "kubernetes/**/*.yaml"
+      "ansible": "ansible/**/*.yml"
     },
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,
