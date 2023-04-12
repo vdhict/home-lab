@@ -36,6 +36,15 @@ spec:
           http:
             port: 6052
 
+    hostNetwork: true
+
+    dnsConfig:
+      nameservers:
+      # Set to your router IP or local DNS server
+        - 172.16.2.252
+
+    dnsPolicy: None
+
     ingress:
       main:
         enabled: true
