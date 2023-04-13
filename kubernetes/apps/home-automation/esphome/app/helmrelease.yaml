@@ -32,12 +32,14 @@ spec:
       # PASSWORD:
     service:
       main:
+        type: LoadBalancer
+        loadBalancerIP: 172.16.2.122
+        annotations:
+          metallb.universe.tf/allow-shared-ip: "home-assistant-172.16.2.122"
         ports:
           http:
             port: 6052
-
     hostNetwork: true
-
     dnsConfig:
       nameservers:
       # Set to your router IP or local DNS server
