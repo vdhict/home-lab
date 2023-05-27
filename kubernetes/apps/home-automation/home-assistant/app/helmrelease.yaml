@@ -106,7 +106,7 @@ spec:
       enabled: true
       image:
         repository: postgres
-        tag: '14.7'
+        tag: '14.8'
       auth:
         enablePostgresUser: true
         existingSecret: home-assistant-secret
