@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.5.3
+      tag: 2023.7.3
     env:
       TZ: 'Europe/Amsterdam'
     hostNetwork: true
@@ -71,7 +71,7 @@ spec:
         enabled: true
         image:
           repository: codercom/code-server
-          tag: 4.12.0
+          tag: 4.16.0
         workingDir: '/config'
         args:
           - --auth
@@ -106,7 +106,7 @@ spec:
       enabled: true
       image:
         repository: postgres
-        tag: '14.7'
+        tag: '14.8'
       auth:
         enablePostgresUser: true
         existingSecret: home-assistant-secret
