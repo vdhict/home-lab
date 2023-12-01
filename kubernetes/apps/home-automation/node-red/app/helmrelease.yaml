@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: nodered/node-red
-      tag: 3.1.0
+      tag: 3.1.1
     env:
       TZ: "Europe/Amsterdam"
       FLOWS: "flows.json"
